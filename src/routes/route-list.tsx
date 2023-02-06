@@ -1,46 +1,41 @@
 import React from 'react';
-import Home from '@/pages/Home';
-import { SingleRoute } from '@/routes/types';
+import { RouteObject } from 'react-router-dom';
 
-export const routes: SingleRoute[] = [
+import Home from '@/pages/Home';
+import Layout from '@/components/Layout';
+
+export const routes: RouteObject[] = [
   {
-    path: '/',
-    element: <Home />,
-  },
-  {
-    path: 'login',
-    element: <div>Login</div>,
-  },
-  {
-    path: 'wallets',
-    element: <div>All Wallets</div>,
-    isProtected: true,
+    element: <Layout />,
     children: [
       {
-        path: ':id',
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: 'login',
+        element: <div>Login</div>,
+      },
+      {
+        path: 'wallets',
+        element: <div>All Wallets</div>,
+      },
+      {
+        path: 'wallets/:id',
         element: <div>Wallet with id</div>,
-        children: [{ path: 'logs', element: <div>Wallet Logs</div> }],
+      },
+      {
+        path: 'wallets/:id/logs',
+        element: <div>Wallet Logs</div>,
+      },
+      {
+        path: 'spend',
+        element: <div>Spend</div>,
+      },
+      {
+        path: 'earn',
+        element: <div>Earn</div>,
       },
     ],
-  },
-  // {
-  //   path: '/wallet/:id',
-  //   element: <div>Wallet</div>,
-  //   isProtected: true,
-  // },
-  // {
-  //   path: '/wallet/:id/logs',
-  //   element: <div>Wallet logs</div>,
-  //   isProtected: true,
-  // },
-  {
-    path: 'spend',
-    element: <div>Spend</div>,
-    isProtected: true,
-  },
-  {
-    path: 'earn',
-    element: <div>Earn</div>,
-    isProtected: true,
   },
 ];

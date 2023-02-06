@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './App.css';
-import NavBar from '@/components/NavBar';
 import { AuthProvider } from '@/context/AuthContext';
 import AppRoutes from '@/routes';
 
@@ -11,7 +10,6 @@ function App() {
   return (
     <AuthProvider>
       <div className="App">
-        <NavBar />
         <AppRoutes />
       </div>
     </AuthProvider>
