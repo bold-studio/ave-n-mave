@@ -3,6 +3,8 @@ import { RouteObject } from 'react-router-dom';
 
 import Home from '@/pages/Home';
 import Layout from '@/components/Layout';
+import ProtectedRoute from '@/routes/ProtectedRoute';
+import Login from '@/pages/Login';
 
 export const routes: RouteObject[] = [
   {
@@ -14,27 +16,47 @@ export const routes: RouteObject[] = [
       },
       {
         path: 'login',
-        element: <div>Login</div>,
+        element: <Login />,
       },
       {
         path: 'wallets',
-        element: <div>All Wallets</div>,
+        element: (
+          <ProtectedRoute>
+            <div>All Wallets</div>
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'wallets/:id',
-        element: <div>Wallet with id</div>,
+        element: (
+          <ProtectedRoute>
+            <div>Wallet with id</div>
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'wallets/:id/logs',
-        element: <div>Wallet Logs</div>,
+        element: (
+          <ProtectedRoute>
+            <div>Wallet Logs</div>
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'spend',
-        element: <div>Spend</div>,
+        element: (
+          <ProtectedRoute>
+            <div>Spend</div>
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'earn',
-        element: <div>Earn</div>,
+        element: (
+          <ProtectedRoute>
+            <div>Earn</div>
+          </ProtectedRoute>
+        ),
       },
     ],
   },

@@ -35,7 +35,7 @@ const analytics = getAnalytics(app);
 /** Google Auth */
 export const handleGoogleSignIn = async (handleSuccess: Function, handleError: Function) => {
   try {
-    await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
     const providerGoogle = new GoogleAuthProvider();
     const result = await firebase.auth().signInWithPopup(providerGoogle);
     handleSuccess(result);
