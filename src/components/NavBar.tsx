@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '@/svg/Logo';
 import Google from '@/svg/Google';
 import { makeLogin, makeLogout, useAuth } from '@/context/AuthContext';
-import { Link } from 'react-router-dom';
 
 //TODO: add balance and/or capital at the middle
 const NavBar = () => {

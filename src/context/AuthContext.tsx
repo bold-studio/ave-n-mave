@@ -3,9 +3,8 @@ import { handleGoogleSignIn } from '@/firebase';
 import { Action, Dispatch } from '@/context/types';
 import { User } from '@firebase/auth-types';
 import firebase from 'firebase/compat/app';
-import { useNavigate } from 'react-router-dom';
 
-const AuthContext = createContext<{ state: User; dispatch: Dispatch } | undefined>(undefined);
+const AuthContext = createContext<{ state: User | null; dispatch: Dispatch } | undefined>(undefined);
 
 const AuthReducer = (state: User | Error, action: Action) => {
   switch (action.type) {
@@ -32,7 +31,6 @@ const useAuth = () => {
 
 const AuthProvider: FC<ComponentProps<any>> = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, null);
-  // const navigate = useNavigate();
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -53,7 +51,8 @@ const makeLogin = async (dispatch: Dispatch) => {
 };
 
 const makeLogout = async (dispatch: Dispatch) => {
-  dispatch({ type: 'LOGIN', payload: null });
+  await firebase.auth().signOut();
+  dispatch({ type: 'LOGOUT' });
 };
 
 export { AuthProvider, useAuth, makeLogin, makeLogout };
