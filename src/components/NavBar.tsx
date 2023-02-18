@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '@/svg/Logo';
-import Google from '@/svg/Google';
+
+import { Logo, Google } from '@/svg/';
 import { makeLogin, makeLogout, useAuth } from '@/context/AuthContext';
 
 //TODO: add balance and/or capital at the middle

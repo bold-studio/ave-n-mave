@@ -1,10 +1,9 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
 
-import Home from '@/pages/Home';
-import Layout from '@/components/Layout';
+import { Home, Login, NotFound } from '@/pages';
+import { Layout } from '@/components';
 import ProtectedRoute from '@/routes/ProtectedRoute';
-import Login from '@/pages/Login';
 
 export const routes: RouteObject[] = [
   {
@@ -57,6 +56,10 @@ export const routes: RouteObject[] = [
             <div>Earn</div>
           </ProtectedRoute>
         ),
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },
