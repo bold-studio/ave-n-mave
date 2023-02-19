@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import { Logo, Google } from '@/svg/';
-import { makeLogin, makeLogout, useAuth } from '@/context/AuthContext';
+import { Logo, Google } from '@/svg/'
+import { makeLogin, makeLogout, useAuth } from '@/context/AuthContext/'
 
 //TODO: add balance and/or capital at the middle
 const NavBar = () => {
-  const { state: user, dispatch } = useAuth();
+  const { state: user, dispatch } = useAuth()
 
   return (
     <header className="w-full h-10 overflow-hidden p-2 flex flex-row justify-between">
@@ -35,7 +35,7 @@ const NavBar = () => {
         </button>
       )}
     </header>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar

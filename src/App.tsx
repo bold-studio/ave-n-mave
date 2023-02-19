@@ -1,11 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import './App.css';
-import { AuthProvider } from '@/context/AuthContext';
-import AppRoutes from '@/routes';
+import { AuthProvider } from '@/context/AuthContext/'
+import AppRoutes from '@/routes'
 
-// TODO: BUG - we throw user to login screen after reloading a page.
-// Add loader before firebase auth responds in order to get user first and only then make a decision.
+import './App.css'
+
 function App() {
   return (
     <AuthProvider>
@@ -13,7 +12,7 @@ function App() {
         <AppRoutes />
       </div>
     </AuthProvider>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,16 +1,18 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React from 'react'
+import { Outlet } from 'react-router-dom'
 
-import { NavBar } from '@/components';
+import { ErrorBoundary, NavBar } from '@/components'
 
 const Layout = () => {
   return (
     <>
       <NavBar />
 
-      <Outlet />
+      <ErrorBoundary>
+        <Outlet />
+      </ErrorBoundary>
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

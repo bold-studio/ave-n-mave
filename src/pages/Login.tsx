@@ -1,16 +1,16 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { makeLogin, useAuth } from '@/context/AuthContext';
+import { makeLogin, useAuth } from '@/context/AuthContext/'
 
 const Login = () => {
-  const { dispatch } = useAuth();
-  const navigate = useNavigate();
+  const { dispatch } = useAuth()
+  const navigate = useNavigate()
 
   const handleLogin = async () => {
-    await makeLogin(dispatch);
-    navigate('/wallets');
-  };
+    await makeLogin(dispatch)
+    navigate('/wallets')
+  }
 
   return (
     <>
@@ -20,7 +20,7 @@ const Login = () => {
         Log in
       </button>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
