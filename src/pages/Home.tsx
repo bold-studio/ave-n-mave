@@ -3,12 +3,7 @@ import React from 'react'
 const Home = () => {
   const text = {
     title: 'Here you will see',
-    list: [
-      'your favorite wallets last 5 transactions',
-      'top 5 largest transactions of the month',
-      "analytics of your spending's",
-      'etc',
-    ],
+    list: ['your favorite wallets', 'top 5 largest transactions of the month', "analytics of your spending's", 'etc'],
   }
 
   return (

@@ -2,7 +2,13 @@ import { ComponentProps, FC, useEffect, useReducer } from 'react'
 import firebase from 'firebase/compat/app'
 
 import { REQUEST_STATUS } from '@/types'
-import { ACTION_TYPES as AUTH_ACTION_TYPES, startLoading, AuthReducer, AuthContext } from '@/context/AuthContext/'
+import {
+  ACTION_TYPES as AUTH_ACTION_TYPES,
+  startLoading,
+  AuthReducer,
+  AuthContext,
+  handleError,
+} from '@/context/AuthContext/'
 
 const AuthProvider: FC<ComponentProps<any>> = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, null)
@@ -10,14 +16,11 @@ const AuthProvider: FC<ComponentProps<any>> = ({ children }) => {
   useEffect(() => {
     startLoading(dispatch)
     const handleSuccess = (user: firebase.User | null) => {
-      if (user) {
-        dispatch({ type: AUTH_ACTION_TYPES.LOGIN, payload: { state: user, status: REQUEST_STATUS.SUCCESS } })
-      }
+      if (!user) handleError(dispatch, { message: 'No user Found' })
+      dispatch({ type: AUTH_ACTION_TYPES.LOGIN, payload: { state: user, status: REQUEST_STATUS.SUCCESS } })
     }
-    const handleError = () =>
-      dispatch({ type: AUTH_ACTION_TYPES.ERROR, payload: { state: null, status: REQUEST_STATUS.FAILED } })
 
-    firebase.auth().onAuthStateChanged(handleSuccess, handleError)
+    firebase.auth().onAuthStateChanged(handleSuccess, (err) => handleError(dispatch, err))
   }, [])
 
   return <AuthContext.Provider value={{ ...state, dispatch }}>{children}</AuthContext.Provider>
