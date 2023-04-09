@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app'
+import { collection, query, where, getDocs, getFirestore } from 'firebase/firestore'
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -8,25 +9,11 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth'
-import 'firebase/compat/auth'
 
 import { ACTION_TYPES as AUTH_ACTION_TYPES, handleError } from '@/context/AuthContext'
 import { REQUEST_STATUS } from '@/types'
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// const firebaseConfig = {
-//   apiKey: process.env.AVE_N_MAVE_API_KEY,
-//   authDomain: process.env.AVE_N_MAVE_AUTH_DOMAIN,
-//   projectId: process.env.AVE_N_MAVE_PROJECT_ID,
-//   storageBucket: process.env.AVE_N_MAVE_STORAGE_BUCKET,
-//   messagingSenderId: process.env.AVE_N_MAVE_MESSAGE_SENDER_ID,
-//   appId: process.env.AVE_N_MAVE_APP_ID,
-//   measurementId: process.env.AVE_N_MAVE_MEASUREMENT_ID,
-// };
+// TODO: Replace the following with local env variables
 const firebaseConfig = {
   apiKey: 'AIzaSyC6LaSlwHWgPC4_HRafwxWEjk-relExDvE',
   authDomain: 'ave-n-mave--alpha.firebaseapp.com',
@@ -76,3 +63,20 @@ export const handleGoogleAuthStateChange = (dispatch: Function) => {
   }
 }
 /** End Google Auth */
+
+/** Collection Setters */
+export const getUserWallets = async () => {
+  try {
+    const db = getFirestore(app)
+    const q = query(collection(db, 'wallets'), where('owner', '==', auth.currentUser?.uid))
+
+    const querySnapshot = await getDocs(q)
+    console.log(querySnapshot)
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, ' => ', doc.data())
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
