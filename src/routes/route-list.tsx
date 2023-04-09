@@ -1,9 +1,10 @@
-import React from 'react';
-import { RouteObject } from 'react-router-dom';
+import React from 'react'
+import { RouteObject } from 'react-router-dom'
 
-import { Home, Login, NotFound } from '@/pages';
-import { Layout } from '@/components';
-import ProtectedRoute from '@/routes/ProtectedRoute';
+import { Home, Login, NotFound } from '@/pages'
+import { Layout } from '@/components'
+import ProtectedRoute from '@/routes/ProtectedRoute'
+import Wallets from '@/pages/Wallets'
 
 export const routes: RouteObject[] = [
   {
@@ -21,7 +22,7 @@ export const routes: RouteObject[] = [
         path: 'wallets',
         element: (
           <ProtectedRoute>
-            <div>All Wallets</div>
+            <Wallets />
           </ProtectedRoute>
         ),
       },
@@ -63,4 +64,4 @@ export const routes: RouteObject[] = [
       },
     ],
   },
-];
+]
